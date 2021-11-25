@@ -1,0 +1,80 @@
+_schema-version: "3.2"
+ID: luigiicons
+version: 0.0.1
+modules:
+- name: luigiicons-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: luigiicons-destination-service
+    parameters:
+      content-target: true
+  - name: luigiicons_html_repo_host
+    parameters:
+      service-key:
+        name: luigiicons_html_repo_host-key
+  - name: uaa_luigiicons
+    parameters:
+      service-key:
+        name: uaa_luigiicons-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: luigitesticons_luigiicons_html_repo_host
+          ServiceInstanceName: luigiicons-html5-app-host-service
+          ServiceKeyName: luigiicons_html_repo_host-key
+          sap.cloud.service: luigitesticons
+        - Authentication: OAuth2UserTokenExchange
+          Name: luigitesticons_uaa_luigiicons
+          ServiceInstanceName: luigiicons-xsuaa-service
+          ServiceKeyName: uaa_luigiicons-key
+          sap.cloud.service: luigitesticons
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: luigiicons_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: luigiicons_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - luigi-content.zip
+      name: luigiicons
+      target-path: resources/
+- name: luigiicons
+  type: html5
+  path: luigiicons
+  build-parameters:
+    builder: custom
+    commands:
+    - npm install
+    - npm run build
+    supported-platforms: []
+resources:
+- name: luigiicons-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      version: 1.0.0
+    service: destination
+    service-name: luigiicons-destination-service
+    service-plan: lite
+- name: luigiicons_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: luigiicons-html5-app-host-service
+    service-plan: app-host
+- name: uaa_luigiicons
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: luigiicons-xsuaa-service
+    service-plan: application
