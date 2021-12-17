@@ -5,10 +5,17 @@ class Navigation {
     constructor() {
     }
 
+    viewGroupSettings = {
+      view_group_components: {
+        mandi_view_group: 'https://cbf69bbetrial.launchpad.cfapps.eu10.hana.ondemand.com/2daf59b9-6dcb-4a79-b39c-aaa4564a8754.nastya19102021.19102021nastyadeploy-1.0.0/#/mandi-view-group/preload'
+      }
+    };
+
     nodes = [
         {
-            pathSegment: "home", 
+            pathSegment: "mandi-view-group", 
             label: "Home", 
+            viewGroup: 'mandi_view_group',
             children: navigationFn
         }
     ];

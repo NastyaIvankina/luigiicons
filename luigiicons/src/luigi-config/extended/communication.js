@@ -6,7 +6,7 @@ class Communication {
         'my-custom-message.changeConfig': () => {
             debugger;
             setChangedNodesConfig(true);
-            // Luigi.setConfig();
+            Luigi.setConfig();
             Luigi.configChanged('navigation.nodes');
             // Luigi.navigation().updateTopNavigation();
         }

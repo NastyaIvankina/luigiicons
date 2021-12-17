@@ -3,8 +3,8 @@ import { initialNodes } from "./initialNodes";
 
 let changedNodesConfig = false;
 
-export const setChangedNodesConfig = () => {
-    changedNodesConfig = true;
+export const setChangedNodesConfig = changeConfig => {
+    changedNodesConfig = changeConfig;
 }
 
 export const navigationFn = () => {
