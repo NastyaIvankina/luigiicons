@@ -1,6 +1,6 @@
 export const changedNodes = [
     {
-        pathSegment: "hw", 
+        pathSegment: "changed", 
         label: "Hello World!", 
         icon: "home", 
         viewUrl: "https://cbf69bbetrial.launchpad.cfapps.eu10.hana.ondemand.com/2daf59b9-6dcb-4a79-b39c-aaa4564a8754.nastya19102021.19102021nastyadeploy-1.0.0/#/",

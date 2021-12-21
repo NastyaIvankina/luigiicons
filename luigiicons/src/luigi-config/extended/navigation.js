@@ -1,9 +1,14 @@
-import { navigationFn } from './helpers';
+import { getChangedNodesConfig, navigationFn } from './helpers';
 import { initialNodes } from './initialNodes';
+import { changedNodes } from './changedNodes';
 
 class Navigation {
     constructor() {
     }
+
+    // navigationFn() {
+    //   return window.location.hash.includes('changed') || window.location.hash.includes('orders') || getChangedNodesConfig() ? changedNodes : initialNodes;
+    // }
 
     viewGroupSettings = {
       view_group_components: {
